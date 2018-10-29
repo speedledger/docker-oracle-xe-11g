@@ -14,7 +14,7 @@ echo "export ORACLE_SID=XE" >> /etc/profile.d/oracle-xe.sh
 
 impdp () {
 	DUMP_FILE=$(basename "$1")
-	DUMP_NAME=${DUMP_FILE%.dmp} 
+	DUMP_NAME=${DUMP_FILE%.dmp}
 	cat > /tmp/impdp.sql << EOL
 -- Impdp User
 CREATE USER IMPDP IDENTIFIED BY IMPDP;
@@ -74,7 +74,7 @@ case "$1" in
 			#Setting up processes, sessions, transactions.
 			sed -i -E "s/processes=[^)]+/processes=$processes/g" /u01/app/oracle/product/11.2.0/xe/config/scripts/init.ora
 			sed -i -E "s/processes=[^)]+/processes=$processes/g" /u01/app/oracle/product/11.2.0/xe/config/scripts/initXETemp.ora
-			
+
 			sed -i -E "s/sessions=[^)]+/sessions=$sessions/g" /u01/app/oracle/product/11.2.0/xe/config/scripts/init.ora
 			sed -i -E "s/sessions=[^)]+/sessions=$sessions/g" /u01/app/oracle/product/11.2.0/xe/config/scripts/initXETemp.ora
 
