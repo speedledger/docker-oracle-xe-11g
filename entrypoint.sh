@@ -86,6 +86,10 @@ case "$1" in
 			echo  alter user sys identified by \"$DEFAULT_SYS_PASS\"\; | su oracle -s /bin/bash -c "$ORACLE_HOME/bin/sqlplus -s / as sysdba" > /dev/null 2>&1
    			echo  alter user system identified by \"$DEFAULT_SYS_PASS\"\; | su oracle -s /bin/bash -c "$ORACLE_HOME/bin/sqlplus -s / as sysdba" > /dev/null 2>&1
 
+                        echo "Setting character length semantics and restart server"
+                        echo "alter system set nls_length_semantics=char scope=both;" | su oracle -s /bin/bash -c "$ORACLE_HOME/bin/sqlplus -s / as sysdba" > /dev/null 2>&1
+                        /etc/init.d/oracle-xe restart
+
 			echo "Database initialized. Please visit http://#containeer:8080/apex to proceed with configuration"
 		fi
 
